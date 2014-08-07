@@ -25,7 +25,7 @@ PuppetLint.new_check(:variable_startswith_number) do
     tokens.select { |r|
       VARIABLE_TYPES.include? r.type
     }.each do |token|
-      if token.value.gsub(/^[0-9].+?/, '').match(/-/)
+      if token.value.gsub(/\[.+?\].+?/, '').match(/^[0-9]/)
         notify :warning, {
           :message => 'variable starts with a number',
           :line    => token.line,
